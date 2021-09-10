@@ -44,10 +44,11 @@ export const connect = () => {
           method: "net_version",
         });
         const NetworkData = await SmartContract.networks[networkId];
-        if (NetworkData) {
+        if (networkId == 4) {
           const SmartContractObj = new web3.eth.Contract(
             SmartContract.abi,
-            NetworkData.address
+            //NetworkData.address
+            "0x9e5010636ed576a34115a8a4d666f578e6c61049"
           );
           dispatch(
             connectSuccess({
@@ -65,7 +66,7 @@ export const connect = () => {
           });
           // Add listeners end
         } else {
-          dispatch(connectFailed("Change network to Polygon."));
+          dispatch(connectFailed("Change network to ETH."));
         }
       } catch (err) {
         dispatch(connectFailed("Something went wrong."));
